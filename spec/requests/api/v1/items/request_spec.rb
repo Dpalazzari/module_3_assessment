@@ -67,12 +67,14 @@ RSpec.describe 'Items API endpoints', type: :request do
   context 'Post to /api/v1/items/1' do
     it 'returns 201 code with updated attributes' do
       create_list(:item, 5)
+      expect(Item.count).to eq(5)
 
       post "/api/v1/items?name=bilbo&description=ring_holder&image_url=cool_image.jpeg"
 
       item = JSON.parse(response.body)
       expect(response).to be_success
 
+      expect(Item.count).to eq(6)
       expect(item).to be_a(Hash)
       expect(item).to have_key('id')
       expect(item).to have_key('name')
