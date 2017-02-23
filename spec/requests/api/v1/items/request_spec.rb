@@ -47,7 +47,7 @@ RSpec.describe 'Items API endpoints', type: :request do
     end
   end
 
-  context 'Delete to ap1/v1/items/1' do
+  context 'Delete to /api/v1/items/1' do
     it 'returns 204 json response code' do
       create_list(:item, 5)
       expect(Item.count).to eq(5)
@@ -61,6 +61,30 @@ RSpec.describe 'Items API endpoints', type: :request do
       expect(result).to be_a(Hash)
       expect(result).to have_key('message')
       expect(result['message']).to eq('204')
+    end
+  end
+
+  context 'Post to /api/v1/items/1' do
+    it 'returns 201 code with updated attributes' do
+      create_list(:item, 5)
+
+      post "/api/v1/items?name=bilbo&description=ring_holder&image_url=cool_image.jpeg"
+
+      item = JSON.parse(response.body)
+      expect(response).to be_success
+
+      expect(item).to be_a(Hash)
+      expect(item).to have_key('id')
+      expect(item).to have_key('name')
+      expect(item).to have_key('description')
+      expect(item).to have_key('image_url')
+      expect(item).to have_key('status')
+      expect(item['status']).to eq("201")
+      expect(item['name']).to eq('bilbo')
+      expect(item['description']).to eq('ring_holder')
+      expect(item['image_url']).to eq('cool_image.jpeg')
+      expect(item).to_not have_key('created_at')
+      expect(item).to_not have_key('updated_at')
     end
   end
 end
