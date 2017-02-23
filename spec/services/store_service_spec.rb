@@ -17,4 +17,12 @@ RSpec.describe StoreService do
       expect(store).to have_key(:phone)
     end
   end
+
+  scenario 'returns total number of all stores' do
+    VCR.use_cassette("store_service.find_total(zip)") do
+      total = StoreService.find_total('80202')
+      
+      expect(total).to be_an(Fixnum)
+    end
+  end
 end
