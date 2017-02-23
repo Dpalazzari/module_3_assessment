@@ -10,7 +10,7 @@ RSpec.describe 'User' do
         click_on 'Find Stores'
 
         expect(current_path).to eq(search_path)
-        expect(page).to have_content("16 total stores")
+        expect(page).to have_content("16 Total Stores")
         expect(page).to have_selector('.longname')
         expect(page).to have_selector('.city')
         expect(page).to have_selector('.phone')

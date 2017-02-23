@@ -1,0 +1,8 @@
+<h1>16 Total Stores</h1>
+
+<% @stores.each do |store| %>
+  <li class='longname'><%= store.name %></li>
+  <li class='city'><%= store.city %></li>
+  <li class='phone'><%= store.phone %></li>
+  <li class='store_type'><%= store.type %></li>
+<% end %>  
