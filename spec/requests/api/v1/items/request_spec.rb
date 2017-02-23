@@ -13,7 +13,7 @@ RSpec.describe 'Items API endpoints', type: :request do
       db_item = Item.first
       
       expect(response).to be_success
-      
+
       expect(items).to be_an(Array)
       expect(items.count).to eq(10)
 
@@ -46,6 +46,7 @@ RSpec.describe 'Items API endpoints', type: :request do
       expect(item).to have_key('image_url')
       expect(item).to have_key('status')
       expect(item['status']).to eq("200")
+      expect(item['id']).to eq(1)
       expect(item).to_not have_key('created_at')
       expect(item).to_not have_key('updated_at')
     end
