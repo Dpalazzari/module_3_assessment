@@ -59,8 +59,8 @@ RSpec.describe 'Items API endpoints', type: :request do
       expect(response).to be_success
       expect(Item.count).to eq(4)
       expect(result).to be_a(Hash)
-      expect(result).to have_key('message')
-      expect(result['message']).to eq('204')
+      expect(result).to have_key('status')
+      expect(result['status']).to eq('204')
     end
   end
 

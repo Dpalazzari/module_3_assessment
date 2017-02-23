@@ -1,7 +1,7 @@
 class DeleteItemSerializer < ActiveModel::Serializer
-  attributes :message
+  attributes :status
 
-  def message
+  def status
     if @instance_options[:template] == 'destroy'
       "204"
     end
