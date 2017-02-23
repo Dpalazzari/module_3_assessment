@@ -8,11 +8,15 @@ RSpec.describe 'Items API endpoints', type: :request do
       get '/api/v1/items'
 
       items   = JSON.parse(response.body)
+
       item    = items.first
       db_item = Item.first
       
       expect(response).to be_success
+      
       expect(items).to be_an(Array)
+      expect(items.count).to eq(10)
+
       expect(item).to be_a(Hash)
       expect(item['name']).to eq(db_item.name)
       expect(item).to have_key('status')
