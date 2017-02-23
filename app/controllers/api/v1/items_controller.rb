@@ -2,7 +2,7 @@ class Api::V1::ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    render
+    render json: @items
   end
 
 end
