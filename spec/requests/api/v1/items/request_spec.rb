@@ -15,10 +15,33 @@ RSpec.describe 'Items API endpoints', type: :request do
       expect(items).to be_an(Array)
       expect(item).to be_a(Hash)
       expect(item['name']).to eq(db_item.name)
+      expect(item).to have_key('status')
+      expect(item['status']).to eq("200")
       expect(item).to have_key('id')
       expect(item).to have_key('name')
       expect(item).to have_key('description')
       expect(item).to have_key('image_url')
+      expect(item).to_not have_key('created_at')
+      expect(item).to_not have_key('updated_at')
+    end
+  end
+
+  context 'Get to api/v1/items/1' do
+    it 'returns jason of just item params[:id]' do
+      create_list(:item, 5)
+
+      get '/api/v1/items/1'
+
+      item = JSON.parse(response.body)
+      expect(response).to be_success
+
+      expect(item).to be_a(Hash)
+      expect(item).to have_key('id')
+      expect(item).to have_key('name')
+      expect(item).to have_key('description')
+      expect(item).to have_key('image_url')
+      expect(item).to have_key('status')
+      expect(item['status']).to eq("200")
       expect(item).to_not have_key('created_at')
       expect(item).to_not have_key('updated_at')
     end
