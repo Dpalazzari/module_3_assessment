@@ -1,6 +1,6 @@
-<h1><%= @total.total %> Total Stores</h1>
+<h1><%= @presenter.total.count %> Total Stores</h1>
 
-<% @stores.each do |store| %>
+<% @presenter.stores.each do |store| %>
   <li class='longname'><%= store.name %></li>
   <li class='city'><%= store.city %></li>
   <li class='phone'><%= store.phone %></li>

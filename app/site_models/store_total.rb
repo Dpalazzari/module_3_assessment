@@ -1,9 +1,9 @@
 class StoreTotal
 
-  attr_reader :total
+  attr_reader :count
 
   def initialize(total={})
-    @total = total
+    @count = total
   end
 
   def self.find_total(zip)
