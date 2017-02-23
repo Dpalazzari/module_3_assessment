@@ -46,4 +46,21 @@ RSpec.describe 'Items API endpoints', type: :request do
       expect(item).to_not have_key('updated_at')
     end
   end
+
+  context 'Delete to ap1/v1/items/1' do
+    it 'returns 204 json response code' do
+      create_list(:item, 5)
+      expect(Item.count).to eq(5)
+      
+      delete '/api/v1/items/1'
+      
+      result = JSON.parse(response.body)
+
+      expect(response).to be_success
+      expect(Item.count).to eq(4)
+      expect(result).to be_a(Hash)
+      expect(result).to have_key('message')
+      expect(result['message']).to eq('204')
+    end
+  end
 end

@@ -5,10 +5,6 @@ class ItemSerializer < ActiveModel::Serializer
     action = @instance_options[:template]
     if action == 'index' || 'show'
       "200"
-    elsif action == 'destroy'
-      "204"
-    elsif action == 'update'
-      "201"
     else
       "404"
     end
